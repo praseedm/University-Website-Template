@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>User Login</title>
+  
+  <link href="./raw/css" rel="stylesheet" type="text/css">    
+  <link rel="stylesheet" type="text/css" href="./raw/style.css">
+  <script 
+src="raw/angular.min.js">
+</script>
+</head>
+
+<body>
+  <div id="main">
+ 
+	<div id="headerin">  
+	  
+	  <div id="welcome">
+	    <a href="index.html"><img src="raw/ktu.jpg" alt="logo" height="110" width="500"></a>
+	  </div><!--close welcome-->	  
+	  
+	  <div id="menubar_container">
+		
+		<div id="menubar">
+		
+          <div id="menu_items">
+	        <ul id="menu">
+              <li><a href="index.html">Home</a></li>
+              <li ><a href="userlogin.html">User Login</a></li>
+              <li><a href="galery.html">Gallery</a></li>
+              <li class="current"><a href="contactus.html">Contact Us</a></li>
+            </ul>
+          </div><!--close menu-->
+		
+        </div><!--close menubar-->	
+		
+      </div><!--close menubar_container-->		 
+	
+	<div id="site_content">  
+	        
+	  <div id="content">		
+		
+		<div class="content_item">		
+			<div ng-app="my" ng-controller="ctrl" ng-init="val='name'">
+				<span>
+					<div class="content_item_left">
+				<h1 style="text-align:center;">Click to change Order</h1>
+				<table border="1" align="middle">
+				<tr>
+				<th ng-click="order('name')">FACULTY</th><th ng-click="order('country')">DEPARTMENT</th>
+				</tr>
+				<tr ng-repeat="x in names | orderBy:val">
+				<td>
+				{{x.name}}
+				</td>
+				<td>
+				{{x.country}}
+				</td>
+				</tr>
+				</table>
+
+				</div>
+					<div class="content_item_right">
+						
+						<h1 style="text-align:center;">Search Contacts:</h1>
+						<input type="text" ng-model="in">
+						
+						<ul  class="clist" ng-show="in">
+							<li tyle="text-align:center;" ng-repeat="x in contacts | filter:in">
+							
+							{{x}}
+							
+							</li>
+						</ul>
+						
+					</div>
+				</span>
+</div>
+<div style="clear:both;" >
+<hr>
+</div>
+
+          	<div class="content_item_left">
+          		
+          		<div>
+				   <p>
+				    KTU UNIVERSITY<br>
+					KTU Campus, Thiruvananthapuram<br>
+					Kerala -695016
+					India<br>
+					Phone: +91 471 2598122, 2598422
+					Fax: +91 471 2598522<br>
+				   </p>
+  			</div></div>
+  			       		<div class="content_item_right">
+		  			<p> 
+						Technical Support For E-Governance Portal <br>
+						Email: support@ktu.edu.in <br>
+						Phone: 0471-6540401.
+					</p>
+  			</div>
+  			
+	</div>	  							
+		
+		</div><!--close content_i
+		watem-->	  
+	  
+	  </div><!--close content-->
+<div class="bottom_footer">
+  <p>&copy; Praseed Melethil</p>
+</div>
+	  
+	</div><!--close site_content--> 
+ 
+  <!--close main-->
+ 
+  
+  <script>
+var app = angular.module("my",[]);
+app.controller("ctrl",function($scope){
+	$scope.names = [
+        {name:'Hari',country:'CSE'},
+        {name:'Ramkrishnan',country:'CE'},
+        {name:'Margareth',country:'EEE'},
+        {name:'Hege',country:'Mech'},
+        {name:'Joe',country:'CSE'},
+        {name:'Vijay',country:'EEE'},
+        {name:'Birgit',country:'CE'},
+        {name:'Mary',country:'CE'},
+        {name:'Kai',country:'CSE'}
+        ];
+		
+	$scope.contacts=["Hari (CSE): 9486343422","Ramkrishnan (CE): 73863435322","Mary (CE): 5386342122","Birgit (CE): 8886344422","Vijay (EEE): 7986343422","Joe (CSE): 45729136719","Hege (Mech): 7181037123","Margareth (EEE): 612519829","Kai (CSE): 8192102308"];
+	$scope.order=function(x){
+		$scope.val=x;
+		};
+	});
+</script>
+
+</body></html>
