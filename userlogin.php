@@ -23,7 +23,7 @@
           <div id="menu_items">
 	        <ul id="menu">
               <li><a href="index.html">Home</a></li>
-              <li class="current"><a href="userlogin.html">User Login</a></li>
+              <li class="current"><a href="userlogin.php">User Login</a></li>
               <li><a href="galery.html">Gallery</a></li>
               <li><a href="contactus.html">Contact Us</a></li>
             </ul>
@@ -40,10 +40,36 @@
 		<div class="content_item">		
 		
           	<h1 style="text-align:center;">User Login</h1>	
-		  	<form method="POST" action="#" >
- 		 		<input type="text" placeholder="username" name="sid"><br><br>
-  				<input type="password" placeholder="password" name="sp"><br><br>
-  				<input type="submit" value="Sign in">
+          	<?php
+          		 // session_destroy();
+          		require_once('connect.php');
+
+          		if(isset($_POST['submit'])){
+          			$user=trim($_POST['user']);
+          			$pass=trim($_POST['pass']);
+          			$query = "SELECT id,user,password,dpt FROM login  WHERE user='$user'";
+          			$response = @mysqli_query($dbc, $query);
+          			if($response)
+						{
+							while($row = mysqli_fetch_array($response)){
+								if($pass == $row['password']){
+									$dpt = $row['dpt'];
+									session_start();
+									$_SESSION['dpt']=$dpt;
+									header('location:user.php');
+								}
+								else{echo '<h4 style="text-align:center;color:red;">Login Failed</h4>';	}
+							}
+						}
+						else{echo '<h4 style="text-align:center;color:red;">Login Failed</h4>';}
+          		}
+
+          	?>
+
+		  	<form method="POST" action="userlogin.php" >
+ 		 		<input type="text" placeholder="username" name="user" required><br><br>
+  				<input type="password" placeholder="password" name="pass" required><br><br>
+  				<input type="submit" name='submit' value="Sign in">
   			</form>   
   		</br>
   		</br>
