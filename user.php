@@ -43,6 +43,8 @@
           		require_once('connect.php');
           			session_start();
 					if(isset($_SESSION['dpt'])){
+						$user = $_SESSION['name'];
+						echo '<h1 style="text-align:center;">Welcome '.$user.'</h1>';
 						echo '<a href="logout.php"><h1 style="text-align:right;">Logout</h1></a>';
 						$dpt=$_SESSION['dpt'];
 	          			$query = "SELECT id,name,dpt,phone FROM students  WHERE dpt='$dpt'";
