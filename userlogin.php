@@ -50,17 +50,19 @@
           			$query = "SELECT id,user,password,dpt FROM login  WHERE user='$user'";
           			$response = @mysqli_query($dbc, $query);
           			if($response)
-						{
+						{ 
 							while($row = mysqli_fetch_array($response)){
 								if($pass == $row['password']){
 									$dpt = $row['dpt'];
 									session_start();
 									$_SESSION['dpt']=$dpt;
-									header('location:user.php');
+									$_SESSION['name']=$row['user'];
+									if($dpt == 'admin'){ header('location:admin.php'); }
+									   else { header('location:user.php'); }
 								}
 								else{echo '<h4 style="text-align:center;color:red;">Login Failed</h4>';	}
 							}
-						}
+						} 
 						else{echo '<h4 style="text-align:center;color:red;">Login Failed</h4>';}
           		}
 

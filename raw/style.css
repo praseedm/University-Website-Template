@@ -231,6 +231,16 @@ input{
     font-size: 15px;
     text-align: center;
     }
+    select{
+    width: 40%;
+    height: 35px;
+    border: 2px solid #116B10;
+    border-style: groove;
+    font-weight: bold;
+    margin-left: 30%;
+    font-size: 15px;
+    text-align: center;
+    }
     
   .clist li {
    background:#FFF;
