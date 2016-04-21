@@ -50,7 +50,7 @@
 						}
 						else{echo '<h4 style="text-align:center;color:red;"><br><br>Login Failed<br>Login to get acess</h4>';}
           	?>		
-          		<div >
+          		<div>
           			<div>
           				<h2 style="text-align:center;">ADD STUDENT</h2>
           			<form method="POST" action="admin.php" >
@@ -89,6 +89,7 @@
 		  			</div>
 		  			<br><br>
 		  			<div>
+
 		  				<h2 style="text-align:center;">ADD FACULTY</h2>
           			<form method="POST" action="admin.php" >
 		 		 		<input type="text" placeholder="Facultyname" name="name" required><br><br>
@@ -124,13 +125,69 @@
 
           				?>
 		  			</div>
+		  			<div><br><br>
+		  				<div>
+		  						<h2 style="text-align:center;">REMOVE STUDENT</h2>
+          			<form method="POST" action="admin.php" >
+		 		 		<input type="number" placeholder="Student ID" name="s_id" max="20" required><br><br>
+		  				<input type="submit" name='remove_student' value="REMOVE">
+		  			</form>
+		  				<?php 
+          	
+          					if(isset($_POST['remove_student'])){
+          						if(empty($_POST['s_id']) || strlen($_POST['s_id']) > 4 )
+									{
+									  $data_missing[]='password';
+									  echo '<h4 style="text-align:center;color:red;">Valied ID required</h4>';
+									}else{$id=trim($_POST['s_id']);}
+								if(empty($data_missing)){
+									require_once('connect.php');
+									$query ="DELETE FROM students WHERE id={$id}";
+  								      
+  								      if(mysqli_query($dbc,$query) == TRUE){
+									   echo '<h4 style="text-align:center;color:red;">REMOVED SUCESSFULLY</h4>';}
+									    mysqli_close($dbc); 
+									  }
+								}
+
+          				?>
+		  				</div>
+		  				<div><br><br>
+		  				<div>
+		  						<h2 style="text-align:center;">REMOVE FACULTY</h2>
+          			<form method="POST" action="admin.php" >
+		 		 		<input type="number" placeholder="Faculty ID" name="f_id" max="20" required><br><br>
+		  				<input type="submit" name='remove_faculty' value="REMOVE">
+		  			</form>
+		  				<?php 
+          	
+          					if(isset($_POST['remove_faculty'])){
+          						if(empty($_POST['f_id']) || strlen($_POST['f_id']) > 4 )
+									{
+									  $data_missing[]='password';
+									  echo '<h4 style="text-align:center;color:red;">Valied ID required</h4>';
+									}else{$id=trim($_POST['f_id']);}
+								if(empty($data_missing)){
+									require_once('connect.php');
+									$query ="DELETE FROM login WHERE id={$id}";
+  								      
+  								      if(mysqli_query($dbc,$query) == TRUE){
+									   echo '<h4 style="text-align:center;color:red;">REMOVED SUCESSFULLY</h4>';}
+									    mysqli_close($dbc); 
+									  }
+								}
+
+          				?>
+		  				</div>
+		  			</div>
           		</div>
           	
   			</br>
   		</br> </br>
-  			<p > Welcome . Details of students and faculties Registered Under Department </p>
+  		
+  			<div ><p > Welcome . Details of students and faculties Registered Under Department </p></div>
   			
-	</div>	  							
+		 </div> 							
 		
 		</div><!--close content_item-->	  
 	  

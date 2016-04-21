@@ -208,7 +208,12 @@ ul#menu li:hover a
 .content_container .feature_img img{
   width: 100%;
 }
-
+.parrent.child{
+float: left;	
+}
+.parrent{
+float: left;	
+}
 .content_container .feature{
   width:70%;
   height:200px;
